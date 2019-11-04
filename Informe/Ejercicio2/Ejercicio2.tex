@@ -1,10 +1,11 @@
 \section{Ejercicio 2}
+\subsection{Introducción}
 En esta sección desarrollaremos el diseño de una máquina de estados de Mealy capaz de reconocer la secuencia 1-1-0-1, enviada de forma serial y una vez reconocida la secuencia, obtendremos una salida de encendido. Mientras que, en el caso contrario tendremos una salida apagada.\\
-La misma consiste en 4 estados, un default que va a ser el estado donde siempre va a volver en caso de error y 3 estados de transición. El estado default va a ser el estado inicial de la misma.
-A continuación podemos observar el diagrama de la misma:
-\begin{figure}[h!]
+La misma consiste en 4 estados, un default que va a ser el estado donde siempre va a volver en caso de error y 3 estados de transición. El estado default va a ser el estado inicial de la misma.\\
+A continuación podemos observar el diagrama de la misma:\\
+\begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.4]{Ejercicio2/Diagrama_de_estados.png}
+	\includegraphics[scale=0.35]{Ejercicio2/Diagrama_de_estados.png}
 	\caption{Diagrama de estados}
 	\label{f:Mealy}
 \end{figure}
@@ -29,8 +30,14 @@ De la figura \ref{f:Mealy} podemos obtener la siguiente tabla de estados:\\
 		\end{tabular}
 	\end{center}
 \end{table}\\
+\subsection{Implementación}
 Para implementar una máquina de Mealy utilizamos el siguiente circuito secuencial genérico:\\
-%Imagen del circuito%
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.3]{Ejercicio2/Maquina_Mealy.png}
+	\caption{Circuito genérico}
+\end{figure}
+\subsubsection{Asignación de estados}
 Por último, se realiza la asignación de los estados dando lugar a la siguiente tabla:\\
 %Tabla de asignacion
 \begin{table}[H]
@@ -54,6 +61,7 @@ Por último, se realiza la asignación de los estados dando lugar a la siguiente
 		\end{tabular}
 	\end{center}
 \end{table}
+\subsubsection{Mapas de Karnaugh}
 A partir de la tabla \ref{t:talba} se obtienen los siguientes mapas de Karnaugh:\\
 %Mapas de Karnaugh 
 \begin{center}
@@ -136,5 +144,14 @@ A partir de la tabla \ref{t:talba} se obtienen los siguientes mapas de Karnaugh:
 	\end{tikzpicture}
 	\hspace*{\fill}
 \end{center}
-Luego, se genero la correspondiente simulación en Verilog ,el cual nos brinda el comportamiento ideal del mismo. Esto dio lugar al siguiente resultado:\\
+\subsubsection{Circuito resultante}
+Para la realización del circuito utilizamos los Flip-Flop D debido a que poseen una relación directa con las variables de estado $y_i$ y $Y_i$. Donde las variables $y_i=Q_i$, pero cabe mencionar que esto es equivalente para todos los distintos tipos de Flip-Flop y $Y_i=D_i$ que es exclusivo del mismo.
+Finalmente, a partir de los mapas de Karnaugh anteriormente mostrados, surge el siguiente circuito:\\
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{Ejercicio2/Circuito.png}
+	\caption{Circuito genérico}
+\end{figure}
+\subsection{Simulación}
+Luego, se generó la correspondiente simulación en Verilog, el cual nos brinda el comportamiento ideal del mismo. Esto dio lugar al siguiente resultado:\\
 %Imagen de la simulacion realizada
