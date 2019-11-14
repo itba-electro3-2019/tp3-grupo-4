@@ -1,0 +1,27 @@
+
+\documentclass{standalone}
+\usepackage[american,oldvoltagedirection,siunitx]{circuitikz}
+\usepackage{tikz}
+\usetikzlibrary{calc,arrows}
+\usetikzlibrary{shapes.geometric}
+
+
+
+
+\begin{document}
+
+
+
+\begin{circuitikz}[] \draw
+
+(0,0) node (and1) [and port]{} 
+
+(and1.out) -- ++ (1,0) node (S) [anchor=east,xshift=0.35cm]           {$S$}
+(and1.in 1) -- ++ (-1,0) node (Q_1) [anchor=east,xshift=-0.01cm]           {$\bar{Q_1}$}
+(and1.in 2) -- ++ (-1,0) node (Q_0) [anchor=east,xshift=-.01cm]           {$Q_0$}
+
+;\end{circuitikz}
+
+
+ 
+\end{document}
