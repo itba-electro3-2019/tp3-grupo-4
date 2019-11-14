@@ -1,0 +1,65 @@
+%\input{Config.tex}
+
+\documentclass{standalone}
+\usepackage[american,oldvoltagedirection,siunitx]{circuitikz}
+\usepackage{tikz}
+\usetikzlibrary{calc,arrows}
+
+
+
+
+
+\begin{document}
+
+\def\TFF(#1)#2#3{%
+  \begin{scope}[shift={(#1)}]
+    \draw (0,0) rectangle (2,3);
+    \node at (1.75,2.5) {$Q$};
+    \node at (1.75,0.5) {$\bar{Q}$};
+    \node at (0.25,2.5) {$T$};
+	%\node at (1,1.5) {\scriptsize $CLK$};
+    \draw (2,2.5) -- ++(0.25,0) coordinate (#2 Q);
+    
+    \draw (2,0.5) -- ++(0.25,0) coordinate (#2 Q!);
+    
+    \draw (0,2.5) -- ++(-0.25,0) coordinate (#2 T);
+    
+    \draw (0,1.5) -- ++(-0.25,0) coordinate (#2 CLK);
+	\draw (0,1.75) -- (0.25,1.5) -- (0,1.25);
+	
+  \end{scope}
+}
+
+\begin{circuitikz}[every path/.style={},>=triangle 45] 
+
+  \TFF(0,0){a}{$Q_0$}
+  
+\draw
+%nodes
+(-4,2.5) node (I)     [anchor=east,xshift=-.75cm]           {$I$}
+
+%(-4,2.5) node (I)     [anchor=east,xshift=-.75cm]           {$I$}
+(-2,2.5) node[circ]{}
+
+(-0.5,1.5) node(and1)[and port]{}
+(and1.in 2) ++ (-0.5,0) node(xnor)[xnor port]{}
+(xnor.in 2) ++ (-1.25,0) node(Q_0)[]{$Q_0$}
+(xnor.in 1) ++ (-1.25,0) node(Q_1)[]{$Q_1$}
+%(xnor.in 1) ++ (-1,0) node (I)     [anchor=east,xshift=-.75cm]           {$I$}
+
+%%connections
+(Q_0) -- (xnor.in 2)
+(Q_1) -- (xnor.in 1)
+(I) -- (a T)
+(and1.out) -- (a CLK)
+(-2,2.5) |- (and1.in 1)
+(xnor.out) |- (and1.in 2)
+
+
+
+
+;\end{circuitikz}
+
+
+ 
+\end{document}

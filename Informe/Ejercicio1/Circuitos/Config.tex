@@ -1,48 +1,9 @@
-%Defino el papel y caracteristicas del informe
-\documentclass[12pt,a4paper]{article}
-\usepackage[a4paper, total={6in, 8in}]{geometry}
-\setlength{\parindent}{20pt}				%cuanta sangria al principio de un parrafo
-\usepackage{graphicx}						% importar imagenes
-\usepackage{indentfirst}					%pone sangria al primer parrafo de una seccion
-\usepackage{float} 							% posicion H para floats
-\usepackage[colorinlistoftodos]{todonotes}	%permite poner notas con todonotes
-\usepackage{mathtools}  					%paquete que simplifica matemática y ecuaciones en LATEX
-\usepackage{bm}
-\usepackage[utf8]{inputenc}					% caracteres utf8 (tildes, enie) sin tener que usar comandos
-\setcounter{secnumdepth}{0}					%Quito la enumeracion de las secciones
-%Defino idioma del documento más unos extras
-\usepackage[spanish, es-tabla, es-nodecimaldot]{babel}
-% texto automatico en español,"tabla" en vez de "cuadro" y no reemplaza puntos decimales por comas
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%% PAQUETES EXTRA %%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%Para manejo de figuraaas
-\usepackage[export]{adjustbox}
-\usepackage{subcaption}
-
-%Para letras de los captions
-\usepackage[font=scriptsize,labelfont=bf]{caption}
-
-%Slash en tablas
-\usepackage{diagbox}
-
-%multi-row
-\usepackage{multirow}
-
-%graficos
-\usepackage{graphicx}
-
-%tikz
-\usepackage{tikz}
-\usetikzlibrary{automata, positioning, arrows, calc, math}
-
-
-%Para realizar los mapas de karnaugh
+\documentclass[x11names,tikz]{standalone}
 \usepackage{xstring}    % needed for string manipulations
 \usepackage{fmtcount}   % needed for some binary printing
-%\usetikzlibrary{calc,math}
+\usepackage{tikz}
+\usepackage[american,oldvoltagedirection,siunitx]{circuitikz}
+\usetikzlibrary{calc,math}
 \newif\ifKaddress
 \newif\ifKInd
 \pgfkeys{
@@ -82,7 +43,7 @@
                      label scale         = 1.4, 
                      variable scale      = 0.7,
                      variable sep        = 2pt,
-                     value scale         = 1.5,
+                     value scale         = 2,
                      group color         = red,
                      group rounded       = 2pt,
                      group linewidth     = .3mm,

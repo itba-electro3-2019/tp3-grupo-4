@@ -5,4 +5,5 @@ Informe/*.gz
 Informe/*.toc
 Informe/*.bbl
 Informe/*.blg
+Informe/*.txt
 .DS_Store

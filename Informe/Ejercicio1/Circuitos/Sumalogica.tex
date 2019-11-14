@@ -1,0 +1,114 @@
+\input{Config.tex}
+
+%\documentclass{standalone}
+%\usepackage[american,oldvoltagedirection,siunitx]{circuitikz}
+%\usepackage{tikz}
+\usetikzlibrary{calc,arrows}
+\usetikzlibrary{shapes.geometric}
+
+\tikzset{
+  multiplexer/.style={
+    draw,
+    trapezium,
+    shape border uses incircle, 
+    shape border rotate=270,
+    minimum size=18pt
+  }  
+}
+
+
+
+
+\begin{document}
+
+\def\DFF(#1)#2#3#4{%
+  \begin{scope}[shift={(#1)}]
+    \draw (0,0) rectangle (2,3);
+    \node at (1.75,2.5) {$Q_#4$};
+    \node at (1.75,0.5) {$\bar{Q_#4}$};
+    \node at (0.25,2.5) {$D$};
+    \node at (1,1.5) {#3};
+	%\node at (1,1.5) {\scriptsize $CLK$};
+    \draw (2,2.5) -- ++(0.25,0) coordinate (#2 Q);
+    
+    \draw (2,0.5) -- ++(0.25,0) coordinate (#2 Q!);
+    
+    \draw (0,2.5) -- ++(-0.25,0) coordinate (#2 D);
+    
+    \draw (0,1.5) -- ++(-0.25,0) coordinate (#2 CLK);
+	\draw (0,1.75) -- (0.25,1.5) -- (0,1.25);
+	
+	
+	
+  \end{scope}
+}
+
+\begin{circuitikz}[every path/.style={},>=triangle 45] 
+
+\node[multiplexer]
+  (mul) at (-1.5,6.5) {};
+\draw (mul.top side) --++(10pt,0) ; 
+\draw (mul.south west) --++(-10pt,0) ; 
+\draw (mul.south west) ++ (5pt,0) node []{$0$}; 
+\draw (mul.north west) --++(-10pt,0) ; 
+\draw (mul.north west) ++ (5pt,0) node []{$1$};
+
+\node[multiplexer]
+  (mu2) at (-1.5,2.5) {};
+\draw (mu2.top side) --++(10pt,0) ; 
+\draw (mu2.south west) --++(-10pt,0) ; 
+\draw (mu2.south west) ++ (5pt,0) node []{$0$}; 
+\draw (mu2.north west) --++(-10pt,0) ;
+\draw (mu2.north west) ++ (5pt,0) node []{$1$};
+
+
+  \DFF(0,0){a}{$D_0$}{0}
+  \DFF(0,4){b}{$D_1$}{1}
+  
+  
+\draw
+(-2,4.5) node (and) [american and port,number inputs=3]{}
+%nodes
+(and.out) ++ (0.45,0) node[circ]{}
+
+(and.in 1) ++ (-1,0) node (S)     [anchor=east,xshift=-.75cm]           {$\bar{S}$}
+(and.in 2) ++ (-1,0) node (I)     [anchor=east,xshift=-.75cm]           {$\bar{I}$}
+(and.in 3) ++ (-1,0) node (L)     [anchor=east,xshift=-.75cm]           {$Q_1 \oplus Q_0$}
+
+(a CLK) ++ (-3,-1) node (CLK) [anchor=east,xshift=-.2cm] {$CLK$}
+
+(mul.north west) ++ (-4,0) node (Q_T)     [anchor=east,xshift=-.75cm]           {$\bar{Q_T}$}
+(mul.south west) ++ (-4,0) node (E_1)     [anchor=east,xshift=-.75cm]           {$E_1$}
+
+(mu2.north west) ++ (-4,0) node (Q_T!)     [anchor=east,xshift=-.75cm]           {$Q_T$}
+(mu2.south west) ++ (-4,0) node (E_0)     [anchor=east,xshift=-.75cm]           {$E_0$}
+
+
+
+%%connections
+(Q_T!) -- (mu2.north west)
+(Q_T) -- (mul.north west)
+(E_1) -- (mul.south west)
+(E_0) -- (mu2.south west)
+
+(mul.top side) -- (b D)
+(mu2.top side) -- (a D)
+(and.out) -| ++ (0.45,1.58)
+(and.out) -| ++ (0.45,-1.58)
+(S) -- (and.in 1)
+(I) -- (and.in 2)
+(L) -- (and.in 3)
+
+(a CLK)  -- (b CLK)
+(a CLK) |- ++ (-3,-1)
+
+
+
+
+
+
+;\end{circuitikz}
+
+
+ 
+\end{document}

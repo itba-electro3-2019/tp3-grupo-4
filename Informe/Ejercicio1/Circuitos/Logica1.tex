@@ -1,0 +1,81 @@
+\input{Config.tex}
+
+%\documentclass{standalone}
+%\usepackage[american,oldvoltagedirection,siunitx]{circuitikz}
+
+
+\begin{document}
+
+\begin{circuitikz}[]\draw
+
+(-2.5,2.5) node[american not port, scale=0.5] (mynot1) {}
+(mynot1.out)  node      [anchor=north west,xshift=-0.4cm]      {$\bar{I}$}
+(-3.5,5) node[american not port, scale=0.5] (mynot2) {}
+(mynot2.out)  node      [anchor=south west,xshift=-0.4cm]         {$\bar{S}$}
+
+(-4,1) node (Q_1)     [anchor=east,xshift=-.75cm]           {$Q_1$}
+(-4,7) node (Q_0)     [anchor=east,xshift=-.75cm]           {$Q_0$}
+(-4,5) node (S)     [anchor=east,xshift=-.75cm]           {$S$}
+(-4,2.5) node (I)     [anchor=east,xshift=-.75cm]           {$I$}
+
+(0,6) node (and5) [and port]{} 
+(0,4.5) node (and4) [and port]{}
+(0,3) node (and3) [and port]{}
+(0,1.5) node (and2) [and port]{}
+(0,0) node (and1) [and port]{}
+
+(3,5.25) node (or2) [american or port,number inputs=3]{}
+(3,1.5) node (or1) [american or port,number inputs=3]{}
+
+
+%and5
+(mynot2.out) |- (and5.in 2)
+(Q_0) -| (and5.in 1)
+
+%and4
+(mynot1.out) |- (and4.in 1)
+(Q_0) -| (and4.in 2)
+
+%and3
+(mynot2.out) |- (and3.in 1)
+(Q_1) -| (and3.in 2)
+
+%and2
+(mynot1.out) |- (and2.in 1)
+(Q_1) -| (and2.in 2)
+%and1
+(mynot1.out) |- (and1.in 1)
+(mynot2.out) |- (and1.in 2)
+
+%%connections
+(or1.out) -- ++ (1,0)
+(or1.out) ++ (1.5,0) node []{$D_0$}
+
+(or2.out) -- ++ (1,0)
+(or2.out) ++ (1.5,0) node []{$D_1$}
+
+(and5.out) -| (or2.in 2)
+(and4.out) -| (or2.in 3)
+(and1.out) |- (or2.in 1)
+
+(and3.out) -| (or1.in 1)
+(and2.out) -| (or1.in 2)
+(and1.out) -| (or1.in 3)
+
+(mynot1.in) -- (I)
+(mynot2.in) -- (S)
+
+%(0,-4)         node (myand1) [xshift=1cm,and port]           {}
+%(myand1.out)  node      [anchor=south west]             {\it EContador}
+%(myand1.in 1) node (A1)     [anchor=east,xshift=-1cm]           {ERampa}
+%(myand1.in 2) node (B1)     [anchor=east,xshift=-1cm]  {ETR} 
+%(myand1.in 1) -- ++ (-1,0)
+%(myand1.in 2) -- ++ (-1,0)
+%(myand1.out) -- ++ (1,0)
+
+
+;\end{circuitikz}
+
+
+ 
+\end{document}
