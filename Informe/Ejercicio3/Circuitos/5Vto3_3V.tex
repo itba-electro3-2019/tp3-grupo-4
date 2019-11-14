@@ -1,0 +1,51 @@
+
+\documentclass{standalone}
+\usepackage[american,oldvoltagedirection,siunitx]{circuitikz}
+\usepackage{tikz}
+\usetikzlibrary{calc,arrows}
+\usetikzlibrary{shapes.geometric}
+
+
+
+
+\begin{document}
+
+
+
+\begin{circuitikz}[] \draw
+
+(0,0) node [npn,xscale=1,rotate=0,label={[xshift=-0.9cm, yshift=-0.95cm]$BC548$}] (npn1) {}
+
+%\node [label={[xshift=1.0cm, yshift=0.3cm]Label}] {Node};
+
+(npn1.collector) ++ (3,0) node [npn,xscale=1,rotate=0,label={[xshift=-0.9cm, yshift=-0.95cm]$BC548$}] (npn2) {}
+
+(npn1.collector) to[R,l_=$1\,K\Omega$] (npn2.base)
+
+(npn1.base) ++ (-2,0) to[R,l_=$1\,K\Omega$] (npn1.base)
+
+(npn1.base) ++ (-2,0) node[ocirc,label=left:{$V_{in}$}]{}
+
+(npn2.collector) ++ (2,0) node[ocirc,label=right:{$V_{out}$}]{}
+(npn2.collector) ++ (0,2) to[R,l=$10\,K\Omega$] (npn2.collector)
+(npn1.collector) ++ (0,2) to[R,l=$10\,K\Omega$] (npn1.collector)
+
+(npn1.collector) ++ (0,2) node[ocirc,label=above:{$5\,V$}]{}
+(npn2.collector) ++ (0,2) node[ocirc,label=above:{$3.3\,V$}]{}
+
+(npn2.collector) -- ++ (2,0) 
+
+
+
+
+(npn1.emitter) -- ++ (0,-1) node[ground]{}
+(npn2.emitter) -- ++ (0,-1) node[ground]{}
+
+
+%(xnor.in 1) ++ (-1,0) node (I)     [anchor=east,xshift=-.75cm]           {$I$}
+
+;\end{circuitikz}
+
+
+ 
+\end{document}

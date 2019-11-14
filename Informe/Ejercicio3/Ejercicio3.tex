@@ -148,6 +148,41 @@ Por ende, la lógica de salida para nuestra máquina de estados estará represen
 Se adjunta simulación en Proteus para respaldar el diseño.
 
 \subsection{Consideraciones para la placa}
-La cátedra solicita que las entradas y salidas de la máquina de estados tengan una lógica de 5V mientras que la lógica interna sea de $3.3\,V$. \par Como primer medida, se utilizará un regulador de tensión($LMS1587CS$) para obtener la tensión para la lógica interna.
-Dentro del circuito interno no se podrán usar integrados de puertas discretas usuales sino que será necesario utilizar integrados de baja tensión, en nuestro caso un integrado $74AUP1G08-Q1$ para las compuertas AND de dos entradas y un $74AUP2G32$ para la compuerta OR. Por otro lado, también será necesario un Flip Flop D de baja tensión ($74AUP1G79$). \par
+La cátedra solicita que las entradas y salidas de la máquina de estados tengan una lógica de 5V mientras que la lógica interna sea de $3.3\,V$. \par 
+Como primer medida, se utilizará un regulador de tensión($LMS1587CS$) para obtener la tensión para la lógica interna.
+Dentro del circuito interno no se podrán usar integrados de puertas discretas usuales sino que será necesario utilizar integrados de baja tensión, en nuestro caso un integrado ($74AUP1G08-Q1$) para las compuertas AND de dos entradas y un ($74AUP2G32$) para la compuerta OR. Por otro lado, también será necesario un Flip Flop D de baja tensión ($74AUP1G79$). \par
+
+
+\subsubsection{Uso de level shifters}
+Para variar la tensión de entrada de $5\,V$ a $3.3\,V$ se utilizan dos transistores NPN a modo de level shifter como se muestran en la figura (\ref{33to5v}).
+
+ \begin{figure}[H]
+\begin{center}
+\includegraphics[scale=0.75]{Ejercicio3/Circuitos/3_3Vto5V}
+\caption{Level Shifter 3.3V to 5V}
+\end{center}
+\label{33to5v}
+\end{figure}
+Para variar la tensión de entrada de $3.3\,V$ a $5\,V$ se utilizan dos transistores NPN a modo de level shifter como se muestran en la figura (\ref{5vto33v}).
+
+ \begin{figure}[H]
+\begin{center}
+\includegraphics[scale=0.75]{Ejercicio3/Circuitos/5Vto3_3V}
+\caption{Level Shifter 5V to 3.3V}
+\end{center}
+\label{5vto33v}
+\end{figure}
+
+\subsubsection{Componenetes utilizados}
+\begin{itemize}
+\item Regulador de tensión 5V a 3.3V - $LMS1587CS$
+\item Flip-Flop D - $74AUP1G79$
+\item Compuerta AND 2 entradas - $74AUP1G08-Q1$
+\item Compuerta OR 2 entradas - $74AUP2G32$
+\item Transistor NPN BC548 - $74AUP2G32$
+\end{itemize}
+
+
+
+
 
