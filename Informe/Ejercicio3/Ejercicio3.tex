@@ -1,4 +1,17 @@
 \section{Ejercicio 3}
+\subsection{Introducción}
+
+En este ejercicio se implementará la siguiente máquina de Moore provista por la cátedra mediante su diagrama de estados(\ref{Diagrama_de_estados_Ej3}):
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale=0.75]{Ejercicio3/Diagramas/TransicionesEj3}
+\caption{Diagrama de estados}
+\end{center}
+\label{Diagrama_de_estados_Ej3}
+\end{figure}
+
+Esta máquina cuenta con tres estados que son los siguientes:
 
 \begin{table}[H]
 	\begin{center}
@@ -14,6 +27,8 @@
 	\end{center}
 	\label{Estados_Ej3}
 \end{table}
+
+La tabla de transición para esta máquina es la que se muestra a continuación:
 
 \begin{table}[H]
 \begin{center}
@@ -31,16 +46,13 @@ C                              & \multicolumn{1}{c|}{A} & C   & 0
 \end{center}
 \end{table}
 
- \begin{figure}[H]
-\begin{center}
-\includegraphics[scale=0.75]{Ejercicio3/Diagramas/TransicionesEj3}
-\caption{Diagrama de estados}
-\end{center}
-\label{Diagrama_de_estados_Ej3}
-\end{figure}
 
 %Mapas de Karnaugh 
 \subsection{Implementación}
+
+Se necesitan dos bits para almacenar los tres estados utilizados, por lo que se necesitarán dos Flip-Flop D para guardarlos en memoria.
+Desarrollando las tablas obtenemos los siguientes mapas de Karnaugh que nos indicarán los circuitos lógicos necesarios.
+
 \begin{center}
 	\hspace*{\fill}
    \begin{tikzpicture}[x=8mm,y=8mm]
@@ -111,7 +123,7 @@ C                              & \multicolumn{1}{c|}{A} & C   & 0
 	\hspace{2mm}
 	\hspace*{\fill}
 \end{center}
-
+Dando como resultado el siguiente circuito:
  \begin{figure}[H]
 \begin{center}
 \includegraphics[scale=0.5]{Ejercicio3/Circuitos/LogicaEj3}
@@ -120,6 +132,11 @@ C                              & \multicolumn{1}{c|}{A} & C   & 0
 \label{Logica_de_entrada_Ej3}
 \end{figure}
 
+Por otro lado, se puede observar claramente en la tabla de transiciones (\ref{Tabla_de_transiciones_Ej3}) que el valor de la salida sólo se encuentra alto para el caso del estado B. Dando como resultado que el valor de la salida va a estar dado por:
+\begin{equation}
+S=\bar{Q_1}Q_0
+\end{equation}
+Por ende, la lógica de salida para nuestra máquina de estados estará representada por:
  \begin{figure}[H]
 \begin{center}
 \includegraphics[scale=0.75]{Ejercicio3/Circuitos/SalidaEj3}
@@ -127,3 +144,10 @@ C                              & \multicolumn{1}{c|}{A} & C   & 0
 \end{center}
 \label{Logica_de_salida_Ej3}
 \end{figure}
+
+Se adjunta simulación en Proteus para respaldar el diseño.
+
+\subsection{Consideraciones para la placa}
+La cátedra solicita que las entradas y salidas de la máquina de estados tengan una lógica de 5V mientras que la lógica interna sea de $3.3\,V$. \par Como primer medida, se utilizará un regulador de tensión($LMS1587CS$) para obtener la tensión para la lógica interna.
+Dentro del circuito interno no se podrán usar integrados de puertas discretas usuales sino que será necesario utilizar integrados de baja tensión, en nuestro caso un integrado $74AUP1G08-Q1$ para las compuertas AND de dos entradas y un $74AUP2G32$ para la compuerta OR. Por otro lado, también será necesario un Flip Flop D de baja tensión ($74AUP1G79$). \par
+
