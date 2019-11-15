@@ -4,41 +4,60 @@
 module gen_signal(I,S);
     
     parameter PERIODO = 10;
-    output reg I,S,out;
+    output reg I,S;
     
     initial begin
 //1er Error
-        out=1'b0;
+        I=1'b0;
+        S=1'b1;
         #PERIODO;
-         out<=1'b0;
+        I=1'b1;
+        S=1'b1;
         #PERIODO;
-        out<=1'b1;
+        I=1'b0;
+        S=1'b0;
         #PERIODO;
-//2do Error
-        out<=1'b0;
+        I=1'b0;
+        S=1'b0;
         #PERIODO;
-        out<=1'b1;
+        I=1'b0;
+        S=1'b1;
         #PERIODO;
-        out<=1'b1;
+        I=1'b1;
+        S=1'b1;
         #PERIODO;
-//3er Error
-        out<=1'b1;
+        I=1'b1;
+        S=1'b0;
         #PERIODO;
-        out<=1'b1;
+        I=1'b1;
+        S=1'b0;
         #PERIODO;
-        out<=1'b1;
+        I=1'b0;
+        S=1'b0;
         #PERIODO;
-        out<=1'b0;
+        I=1'b1;
+        S=1'b0;
         #PERIODO;
-//4to Error
-        out<=1'b0;
+        I=1'b1;
+        S=1'b0;
         #PERIODO;
-        out<=1'b1;
+        I=1'b1;
+        S=1'b1;
         #PERIODO;
-        out<=1'b1;
+        I=1'b1;
+        S=1'b0;
         #PERIODO;
-        out<=1'b0;
+        I=1'b0;
+        S=1'b0;
         #PERIODO;
-        out<=1'b1;
+        I=1'b1;
+        S=1'b0;
+        #PERIODO;
+        I=1'b1;
+        S=1'b1;
+        #PERIODO;
+        I=1'b0;
+        S=1'b0;
+        #PERIODO;
     end
 endmodule
