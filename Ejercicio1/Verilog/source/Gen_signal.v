@@ -58,6 +58,5 @@ module gen_signal(I,S);
         #PERIODO;
         I=1'b0;
         S=1'b0;
-        #PERIODO;
     end
 endmodule

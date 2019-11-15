@@ -11,7 +11,7 @@ module main;
 
 //Begin simulation
     initial begin
-        #15
+        #16
         $finish;
     end
 

@@ -4,7 +4,7 @@
 #Generate the executable of the project with this name
 #Proj will be the default name but it´s expected to recive the name
 #By using ?= we can set a default name if it hadn´t been given
-TARGET	?=	Proj
+TARGET	?=	Proj1
 #By having $Num we get the commands pass into it(Instresting Data)
 #As the name literaly said, it´s the name of the compiler
 COMPILER	=	iverilog
